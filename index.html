@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Your Name — Portfolio</title>
+  <title>VISHVALI DEO — Portfolio</title>
   <style>
     body {
       margin: 0;
@@ -17,7 +17,6 @@
       top: 0;
       width: 100%;
       background: #ffffff;
-      color: white;
       display: flex;
       justify-content: space-evenly;
       align-items: center;
@@ -29,9 +28,8 @@
       font-size: 1.2rem;
     }
     .navbar a {
-      color: white;
+      color: #000;
       margin-left: 20px;
-      align-items:left-center;
       text-decoration: none;
       font-weight: bold;
     }
@@ -40,10 +38,8 @@
       color: #00e0ff;
     }
     .navbar .links {
-      padding-right: 10px; /* move all nav items inward */
-      padding-left: 10px; 
+      padding: 0 10px;
     }
-
 
     /* Banner */
     .banner {
@@ -63,7 +59,7 @@
     }
     .profile-pic {
       position: absolute;
-      top: -70px; /* overlap effect */
+      top: -70px;
       left: 50%;
       transform: translateX(-50%);
       border-radius: 50%;
@@ -106,6 +102,75 @@
       margin-bottom: 16px;
     }
 
+    /* Project cards */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 18px;
+      margin-top: 18px;
+    }
+    .project-card {
+      background: #fff;
+      border: 1px solid #e6e6e6;
+      border-radius: 12px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    .project-header {
+      padding: 14px 16px;
+      border-bottom: 1px solid #eee;
+      background: #f9fafb;
+      font-weight: 700;
+      font-size: 1.05rem;
+    }
+    .project-media {
+      width: 100%;
+      aspect-ratio: 16/9;
+      background: #000;
+    }
+    .project-media img,
+    .project-media video,
+    .project-media iframe {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border: 0;
+    }
+    .project-body {
+      padding: 14px 16px;
+      color: #222;
+    }
+    .project-skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      padding: 0 16px 12px 16px;
+    }
+    .skill-chip {
+      font-size: 0.85rem;
+      background: #f3f4f6;
+      border: 1px solid #e5e7eb;
+      padding: 4px 10px;
+      border-radius: 999px;
+    }
+    .project-links {
+      padding: 12px 16px 16px 16px;
+      border-top: 1px solid #f0f0f0;
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+    .project-links a {
+      text-decoration: none;
+      font-weight: 700;
+      color: #0073b1;
+    }
+    .project-links a:hover {
+      text-decoration: underline;
+    }
+
     footer {
       text-align: center;
       padding: 20px;
@@ -118,7 +183,7 @@
 
   <!-- Navbar -->
   <div class="navbar">
-    <div class="brand">Your Name</div>
+    <div class="brand">VISHVALI DEO</div>
     <div class="links">
       <a href="#about">About</a>
       <a href="#projects">Projects</a>
@@ -137,7 +202,7 @@
 
   <!-- Main content -->
   <div class="container">
-    <h1>Your Name</h1>
+    <h1>VISHVALI DEO</h1>
     <p class="tagline">Robotics • Controls • Embedded Systems</p>
 
     <section id="about">
@@ -149,7 +214,70 @@
 
     <section id="projects">
       <h2>Projects</h2>
-      <p>List your top projects here with links to GitHub demos.</p>
+      <div class="projects-grid">
+
+        <!-- Project 1 -->
+        <article class="project-card">
+          <div class="project-header">Adaptive PID Robot</div>
+          <div class="project-media">
+            <img src="assets/pid-robot.jpg" alt="Adaptive PID Robot demo" loading="lazy">
+          </div>
+          <div class="project-body">
+            Real-time velocity control on Raspberry Pi with quadrature encoders. Achieved faster response and smoother motion compared to classic PID.
+          </div>
+          <div class="project-skills">
+            <span class="skill-chip">Raspberry Pi</span>
+            <span class="skill-chip">PID</span>
+            <span class="skill-chip">Encoders</span>
+            <span class="skill-chip">Python</span>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/your-username/pid-robot" target="_blank">GitHub</a>
+            <a href="https://youtu.be/your-demo" target="_blank">Demo Video</a>
+          </div>
+        </article>
+
+        <!-- Project 2 -->
+        <article class="project-card">
+          <div class="project-header">Koopman-Enhanced Control</div>
+          <div class="project-media">
+            <video src="assets/koopman-demo.mp4" controls preload="metadata"></video>
+          </div>
+          <div class="project-body">
+            Neural-lifted dynamics combined with PID for improved trajectory tracking. Demonstrated better disturbance rejection and accuracy.
+          </div>
+          <div class="project-skills">
+            <span class="skill-chip">Koopman</span>
+            <span class="skill-chip">Control</span>
+            <span class="skill-chip">TensorFlow</span>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/your-username/koopman-control" target="_blank">GitHub</a>
+            <a href="https://youtu.be/your-koopman-demo" target="_blank">Demo Video</a>
+          </div>
+        </article>
+
+        <!-- Project 3 -->
+        <article class="project-card">
+          <div class="project-header">PLC + HMI Test Rig</div>
+          <div class="project-media">
+            <iframe src="https://www.youtube.com/embed/VIDEO_ID" title="PLC + HMI Test Rig" allowfullscreen loading="lazy"></iframe>
+          </div>
+          <div class="project-body">
+            Industrial controls test stand with automated data logging and reporting. Built experiments for system validation and reliability checks.
+          </div>
+          <div class="project-skills">
+            <span class="skill-chip">PLC</span>
+            <span class="skill-chip">HMI</span>
+            <span class="skill-chip">LabVIEW</span>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/your-username/plc-hmi-rig" target="_blank">GitHub</a>
+            <a href="https://youtu.be/your-plc-demo" target="_blank">Demo Video</a>
+          </div>
+        </article>
+
+      </div>
     </section>
 
     <section id="resume">
@@ -166,7 +294,7 @@
   </div>
 
   <footer>
-    © <span id="year"></span> Your Name
+    © <span id="year"></span> VISHVALI DEO
   </footer>
 
   <script>
