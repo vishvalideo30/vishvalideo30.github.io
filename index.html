@@ -5,10 +5,33 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>VISHVALI DEO — Portfolio</title>
   <style>
+    :root {
+      --bg: #f3f2ef;
+      --text: #111;
+      --card-bg: #fff;
+      --card-border: #e6e6e6;
+      --link: #0073b1;
+      --link-hover: #005582;
+      --chip-bg: #e6f7ff;
+      --chip-text: #0077b6;
+    }
+    body.dark {
+      --bg: #121212;
+      --text: #f1f1f1;
+      --card-bg: #1e1e1e;
+      --card-border: #333;
+      --link: #4dabf7;
+      --link-hover: #82cfff;
+      --chip-bg: #2c2c2c;
+      --chip-text: #4dabf7;
+    }
+
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f3f2ef;
+      font-family: "Segoe UI", Roboto, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      transition: background 0.3s, color 0.3s;
     }
 
     /* Navbar */
@@ -16,34 +39,55 @@
       position: fixed;
       top: 0;
       width: 100%;
-      background: #ffffff;
+      background: var(--card-bg);
+      backdrop-filter: blur(10px);
       display: flex;
-      justify-content: space-evenly;
+      justify-content: space-between;
       align-items: center;
       padding: 14px 40px;
       z-index: 1000;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      transition: background 0.3s;
     }
     .navbar .brand {
       font-weight: bold;
       font-size: 1.2rem;
+      color: var(--text);
     }
-    .navbar a {
-      color: #000;
+    .navbar .links a {
+      color: var(--text);
       margin-left: 20px;
       text-decoration: none;
       font-weight: bold;
+      transition: color 0.3s;
     }
-    .navbar a:hover {
+    .navbar .links a:hover {
       text-decoration: underline;
-      color: #00e0ff;
+      color: #00b4d8;
     }
-    .navbar .links {
-      padding: 0 10px;
+
+    /* Dark mode button */
+    .toggle-btn {
+      cursor: pointer;
+      background: none;
+      border: 2px solid var(--text);
+      border-radius: 50%;
+      width: 34px;
+      height: 34px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      transition: all 0.3s;
+      color: var(--text);
+    }
+    .toggle-btn:hover {
+      background: var(--chip-bg);
     }
 
     /* Banner */
     .banner {
-      margin-top: 45px; /* offset for fixed navbar */
+      margin-top: 60px;
       position: relative;
       width: 100%;
       height: 280px;
@@ -67,18 +111,19 @@
       width: 180px;
       height: 180px;
       object-fit: cover;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.25);
       background: #fff;
     }
 
     /* Main container */
     .container {
-      max-width: 900px;
+      max-width: 1000px;
       margin: 100px auto 40px auto;
       padding: 20px;
-      background: #fff;
-      border-radius: 10px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      background: var(--card-bg);
+      border-radius: 12px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+      transition: background 0.3s;
     }
 
     h1 {
@@ -88,7 +133,7 @@
     }
     p.tagline {
       text-align: center;
-      color: #555;
+      color: var(--text);
       font-size: 1.1rem;
     }
 
@@ -106,29 +151,43 @@
     .projects-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 18px;
+      gap: 22px;
       margin-top: 18px;
     }
     .project-card {
-      background: #fff;
-      border: 1px solid #e6e6e6;
-      border-radius: 12px;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+      background: var(--card-bg);
+      border-radius: 18px;
+      border: 1px solid var(--card-border);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
       overflow: hidden;
       display: flex;
       flex-direction: column;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeUp 0.6s ease forwards;
+      transition: background 0.3s, border 0.3s;
     }
+    .projects-grid .project-card:nth-child(1) { animation-delay: 0.1s; }
+    .projects-grid .project-card:nth-child(2) { animation-delay: 0.3s; }
+    .projects-grid .project-card:nth-child(3) { animation-delay: 0.5s; }
+
+    .project-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 10px 24px rgba(0,0,0,0.15);
+    }
+
     .project-header {
       padding: 14px 16px;
-      border-bottom: 1px solid #eee;
-      background: #f9fafb;
+      background: var(--chip-bg);
       font-weight: 700;
       font-size: 1.05rem;
+      color: var(--chip-text);
     }
+
     .project-media {
       width: 100%;
       aspect-ratio: 16/9;
-      background: #000;
+      overflow: hidden;
     }
     .project-media img,
     .project-media video,
@@ -136,12 +195,19 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
+      transition: transform 0.4s ease;
       border: 0;
     }
+    .project-card:hover .project-media img,
+    .project-card:hover .project-media video {
+      transform: scale(1.05);
+    }
+
     .project-body {
       padding: 14px 16px;
-      color: #222;
+      color: var(--text);
     }
+
     .project-skills {
       display: flex;
       flex-wrap: wrap;
@@ -149,33 +215,51 @@
       padding: 0 16px 12px 16px;
     }
     .skill-chip {
-      font-size: 0.85rem;
-      background: #f3f4f6;
-      border: 1px solid #e5e7eb;
-      padding: 4px 10px;
+      font-size: 0.8rem;
+      background: var(--chip-bg);
+      color: var(--chip-text);
+      border: none;
+      padding: 6px 12px;
       border-radius: 999px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      transition: background 0.3s;
     }
+    .skill-chip:hover {
+      background: #caf0f8;
+    }
+
     .project-links {
       padding: 12px 16px 16px 16px;
       border-top: 1px solid #f0f0f0;
       display: flex;
-      gap: 14px;
+      gap: 10px;
       flex-wrap: wrap;
     }
     .project-links a {
+      display: inline-block;
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-weight: 600;
       text-decoration: none;
-      font-weight: 700;
-      color: #0073b1;
+      background: var(--link);
+      color: white;
+      transition: background 0.3s;
     }
     .project-links a:hover {
-      text-decoration: underline;
+      background: var(--link-hover);
     }
 
     footer {
       text-align: center;
       padding: 20px;
-      color: #777;
+      color: var(--text);
       font-size: 0.9rem;
+    }
+
+    /* Fade-in animation */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
   </style>
 </head>
@@ -190,6 +274,7 @@
       <a href="#resume">Resume</a>
       <a href="#contact">Contact</a>
     </div>
+    <button class="toggle-btn" id="themeToggle">☀️</button>
   </div>
 
   <!-- Banner -->
@@ -299,6 +384,16 @@
 
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
+
+    const toggleBtn = document.getElementById("themeToggle");
+    toggleBtn.addEventListener("click", () => {
+      document.body.classList.toggle("dark");
+      if (document.body.classList.contains("dark")) {
+        toggleBtn.textContent = "🌙";
+      } else {
+        toggleBtn.textContent = "☀️";
+      }
+    });
   </script>
 </body>
 </html>
